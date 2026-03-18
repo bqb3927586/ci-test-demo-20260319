@@ -1,3 +1,4 @@
+import pytest
 from app import add, multiply, divide
 
 def test_add():
@@ -8,5 +9,5 @@ def test_multiply():
 
 def test_divide():
     assert divide(10, 2) == 5
-    # 下面这个测试会失败，因为没有捕获异常
-    assert divide(10, 0) == 0
+    with pytest.raises(ValueError, match="Cannot divide by zero"):
+        divide(10, 0)
